@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import Session, relationship
 from sqlalchemy.sql.expression import nulls_last
 from modelos.db import ModeloBase
+from typing import Optional
 from modelos.reserva import Reserva
 
 class Maquina(ModeloBase):
@@ -37,7 +38,7 @@ def obtener_por_pagina_anonimo(db: Session, pagina: int, nombre: str, departamen
         query = query.filter(Maquina.departamento == departamento)
     return query.order_by(Maquina.nombre.asc()).limit(12).offset(pagina).all()
 
-def obtener(db: Session, id: int) -> Maquina | None:
+def obtener(db: Session, id: int) -> Optional[Maquina]:
     return db.query(Maquina).filter(Maquina.id == id).first()
 
 def crear(db: Session, maquina: Maquina) -> Maquina:
