@@ -31,13 +31,20 @@ def obtener_por_pagina(db: Session, pagina: int, nombre: str, departamento: str,
         .order_by(nulls_last(Reserva.fecha.desc()))
     if departamento:
         query = query.filter(Maquina.departamento == departamento)
-    return query.filter(Maquina.nombre.contains(nombre)).limit(12).offset(pagina).all()
+    return query.filter(Maquina.nombre.contains(nombre)).limit(12).offset(pagina * 12).all()
 
 def obtener_por_pagina_anonimo(db: Session, pagina: int, nombre: str, departamento: str):
     query = db.query(Maquina).filter(Maquina.nombre.contains(nombre))
     if departamento:
         query = query.filter(Maquina.departamento == departamento)
-    return query.order_by(Maquina.nombre.asc()).limit(12).offset(pagina).all()
+    return query.order_by(Maquina.nombre.asc()).limit(12).offset(pagina * 12).all()
+
+def obtener_total_paginas(db: Session, nombre: str, departamento):
+    query = db.query(Maquina).filter(Maquina.nombre.contains(nombre))
+    if departamento:
+        query = query.filter(Maquina.departamento == departamento)
+    return (query.count() // 12) + 1
+
 
 def obtener(db: Session, id: int) -> Optional[Maquina]:
     return db.query(Maquina).filter(Maquina.id == id).first()
