@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Boolean, Integer, String
+from sqlalchemy import Column, Boolean, ForeignKey, Integer, String
 from sqlalchemy.orm import Session, relationship
 from passlib.context import CryptContext
 from modelos.db import ModeloBase
@@ -9,14 +9,17 @@ class Usuario(ModeloBase):
     __tablename__ = "usuarios"
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True)
+    carrera_principal_id = Column(Integer, ForeignKey("departamentos.id"))
+    carrera_principal = relationship("Departamento")
     nombre_de_usuario = Column(String, unique=True)
     nombre_completo = Column(String)
     contrasenia = Column(String)
     reservas = relationship("Reserva")
 
-    def __init__(usuario, id, email, nombre_de_usuario, nombre_completo, contrasenia):
+    def __init__(usuario, id, email, carrera_principal_id, nombre_de_usuario, nombre_completo, contrasenia):
         usuario.id = id
         usuario.email = email
+        usuario.carrera_principal_id = carrera_principal_id
         usuario.nombre_de_usuario = nombre_de_usuario
         usuario.nombre_completo = nombre_completo
         usuario.contrasenia = contrasenia

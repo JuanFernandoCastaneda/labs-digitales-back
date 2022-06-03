@@ -11,12 +11,12 @@ enrutador = APIRouter()
 
 class Busqueda(BaseModel):
     nombre: str
-    departamento: str
+    departamento: int
     pagina: int
 
 class Maquina(BaseModel):
     id: int
-    departamento: str
+    departamento_id: int
     nombre: str
     materia: str
     descripcion: str

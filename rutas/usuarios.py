@@ -7,6 +7,7 @@ enrutador = APIRouter()
 
 class Usuario(BaseModel):
     username: str
+    departamento: int
     email: str
     full_name: str
 
