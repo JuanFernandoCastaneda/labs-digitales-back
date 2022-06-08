@@ -4,6 +4,7 @@ from sqlalchemy.sql.expression import nulls_last
 from modelos.db import ModeloBase
 from typing import Optional
 from modelos.reserva import Reserva
+from modelos import usuario
 
 class Maquina(ModeloBase):
     __tablename__ = "maquinas"
@@ -28,8 +29,9 @@ class Maquina(ModeloBase):
         orm_mode = True
 
 def obtener_por_pagina(db: Session, pagina: int, nombre: str, departamento: int, usuario_id: int):
+    model_usuario = usuario.obtener(db, usuario_id)
     query = db.query(Maquina).outerjoin(Reserva).where(or_(Reserva.usuario_id == usuario_id, Reserva.usuario_id == None))\
-        .order_by(nulls_last(Reserva.fecha.desc()))
+        .order_by(nulls_last(Reserva.fecha.desc()), (Maquina.departamento_id == model_usuario.carrera_principal_id).desc())
     if departamento > 0:
         query = query.filter(Maquina.departamento_id == departamento)
     return query.filter(Maquina.nombre.contains(nombre)).limit(12).offset(pagina * 12).all()
