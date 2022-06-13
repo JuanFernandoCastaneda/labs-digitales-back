@@ -1,6 +1,7 @@
-; La combinación de teclas alt + e + a permiten acceder a la pestaña de "Sensor" y luego elegir la máquina de "Aparato de rayos". 
-; Una posible alternativa es hacer alt  + a de "Archivo" + n de "Nueva medida". Pero creo que es más preciso hacerlo a través de sensores.
-Send("!mn")
+; La combinaciï¿½n de teclas alt + e + a permiten acceder a la pestaï¿½a de "Sensor" y luego elegir la mï¿½quina de "Aparato de rayos". 
+; Una posible alternativa es hacer alt  + a de "Archivo" + n de "Nueva medida". Pero creo que es mï¿½s preciso hacerlo a travï¿½s de sensores.
+Send("!ea")
 
-; Esperamos a que la ventana donde se ingresan los parámetros aparezca. 
-WinWaitActive("Aparato de rayo") ; INCOMPLETO, TOCA REVISAR CON AUTOIT WINDOWS INFO.
+; Esperamos a que la ventana donde se ingresan los parï¿½metros aparezca. 
+WinWaitActive("Aparato de rayo")
+; WinWaitActive("Aparato de rayo  <Num. serie: 91207702-407-18495>")

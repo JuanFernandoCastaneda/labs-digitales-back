@@ -2,7 +2,6 @@
 Send("{TAB}")
 
 ; Datos en X. Se puede enviar nada o un {DOWN}. Generalmente se usa �ngulo de cristal, entonces no vamos a enviar nada.
-; Send("{DOWN}")
 Send("{TAB}")
 
 ; Corriente de emis. Se ingresa un double como par�metro. Creo que los valores van de 0.1 a 1 mA.
@@ -19,16 +18,19 @@ Send("{TAB}")
 ; TENSION
 
 ; Opci�n 1 tensi�n (constante):
+; Send("{TAB}")
 ; Send(10)
 
 ; Opci�n 2 tensi�n (variable):
-; Send("{DOWN}")
+; Send("{UP}")
 ; Send("{TAB}")
 ; Send(5)
 ; Send("{TAB}")
 ; Send(35)
 ; Send("{TAB}")
 ; Send(3)
+
+Send("{TAB}")
 
 ; Modo rotaci�n. Siempre es el mismo as� que solo se da tab. Se mueve con {UP} y {DOWN}.
 Send("{TAB}")
@@ -58,7 +60,15 @@ Send("{TAB}")
 Send("{TAB}")
 
 ; Opciones de "Indicar". Parece que nunca se tocan. Se navergar�a entre ellas con {UP}. Supongo que se activan con enter.
+Send("{UP}")
 Send("{TAB}")
 
 ; Opci�n de continuar, terminamos :D. Supongo yo que es con enter que funciona.
+Send("{SPACE}")
+
+; Iniciar medida.
+WinWaitActive("Aparato de rayos X - Registro", "Iniciar medida")
+
+Sleep(2000)
+Send("{TAB}")
 Send("{SPACE}")
