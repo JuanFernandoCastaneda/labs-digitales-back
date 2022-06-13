@@ -1,6 +1,5 @@
-
 from fastapi import FastAPI
-from rutas import autenticacion, departamentos, maquinas, usuarios
+from rutas import autenticacion, departamentos, maquinas, usuarios, rayos_x
 from modelos.db import db, ModeloBase, motor
 from modelos import reserva, usuario, maquina, departamento
 from fastapi.middleware.cors import CORSMiddleware
@@ -47,3 +46,4 @@ app.add_middleware(
 app.include_router(autenticacion.enrutador)
 app.include_router(maquinas.enrutador)
 app.include_router(usuarios.enrutador)
+app.include_router(rayos_x.enrutador)
