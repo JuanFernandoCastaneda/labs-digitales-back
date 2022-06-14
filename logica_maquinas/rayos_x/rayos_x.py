@@ -8,6 +8,7 @@ RUTA_ABRIR_PROGRAMA = "abrir_programa.au3"
 RUTA_ABRIR_RAYOS_X = "abrir_rayos_x.au3"
 RUTA_INGRESAR_PARAMETROS = "ingresar_parametros.au3"
 RUTA_RESULTADO_PARAMETROS = "resultado_parametros.au3"
+RUTA_EXPORTAR_RESULTADOS = "exportar_resultados.au3"
 RUTA_SCRIPT1 = "script1.au3"
 
 tension_variable = False
@@ -71,11 +72,14 @@ def ingresar_parametros(corriente: float, tiempo: int, tension_arranque: int,
 def ejecutar_parametros():
     correr_script(RUTA_RESULTADO_PARAMETROS)
 
+def exportar_resultados():
+    correr_script(RUTA_EXPORTAR_RESULTADOS)
 
-abrir_programa()
-abrir_interfaz_maquina()
-ingresar_parametros(1, 3, 15, None, None, 45, 55, 10)
-ejecutar_parametros()
+#abrir_programa()
+#abrir_interfaz_maquina()
+#ingresar_parametros(1, 3, 15, None, None, 5, 15, 10)
+#ejecutar_parametros()
+exportar_resultados()
 
 # p1.returncode == 0 es que fue exitoso. p1.stderr es para imprimir error.
 # check=True hace que Python también bote excepción.     

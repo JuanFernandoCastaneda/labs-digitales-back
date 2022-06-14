@@ -37,11 +37,11 @@ Send("{TAB}")
 Send("{TAB}")
 
 ; �ngulo de arranque. En grados.
-Send(45)
+Send(5)
 Send("{TAB}")
 
 ; �ngulo de parada. En grados.
-Send(55)
+Send(15)
 Send("{TAB}")
 
 ; Incremento. En grados.
@@ -75,8 +75,8 @@ Send("{TAB}")
 Send("{SPACE}")
 
 ; Tiempo que se debe esperar para que se ejecute la operación. Básicamente es el tiempo que dura en cada ángulo.
-; Multiplicado por la cantidad de veces que va a cambiar, sumado a por ahí 10 segundos de configuración.
-Sleep(10000)
+; Multiplicado por la cantidad de veces que va a cambiar, sumado a por ahí 20 segundos de configuración.
+Sleep(20000)
 Sleep(9000.0)
 
 ;Run("notepad.exe")
