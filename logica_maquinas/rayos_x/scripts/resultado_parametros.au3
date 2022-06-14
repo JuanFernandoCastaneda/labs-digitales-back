@@ -16,7 +16,7 @@ Send("{TAB}")
 ; tensi�n m�nima, tensi�n m�xima e incremento de tensi�n. Toca verificar que el incremento sea congruente con el resto.
 
 Send("{TAB}")
-Send(35)
+Send(15)
 
 ; Opci�n 1 tensi�n (constante):
 ; Send("{TAB}")
@@ -37,15 +37,15 @@ Send("{TAB}")
 Send("{TAB}")
 
 ; �ngulo de arranque. En grados.
-Send(3)
+Send(45)
 Send("{TAB}")
 
 ; �ngulo de parada. En grados.
-Send(10)
+Send(55)
 Send("{TAB}")
 
 ; Incremento. En grados.
-Send(0.1)
+Send(10)
 Send("{TAB}")
 
 ; Cristal siempre es LIF. Es un men� desplegable que hay que ver c�mo se modifica.
@@ -70,6 +70,13 @@ Send("{SPACE}")
 ; Iniciar medida.
 WinWaitActive("Aparato de rayos X - Registro", "Iniciar medida")
 
-Sleep(2000)
+Sleep(7000)
 Send("{TAB}")
 Send("{SPACE}")
+
+; Tiempo que se debe esperar para que se ejecute la operación. Básicamente es el tiempo que dura en cada ángulo.
+; Multiplicado por la cantidad de veces que va a cambiar, sumado a por ahí 10 segundos de configuración.
+Sleep(10000)
+Sleep(9000.0)
+
+;Run("notepad.exe")

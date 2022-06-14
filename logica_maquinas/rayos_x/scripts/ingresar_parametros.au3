@@ -69,6 +69,13 @@ Send("{SPACE}")
 ; Iniciar medida.
 WinWaitActive("Aparato de rayos X - Registro", "Iniciar medida")
 
-Sleep(2000)
+Sleep(7000)
 Send("{TAB}")
 Send("{SPACE}")
+
+; Tiempo que se debe esperar para que se ejecute la operación. Básicamente es el tiempo que dura en cada ángulo.
+; Multiplicado por la cantidad de veces que va a cambiar, sumado a por ahí 20 segundos de configuración.
+Sleep(20000)
+; ESPERA
+
+;Run("notepad.exe")
