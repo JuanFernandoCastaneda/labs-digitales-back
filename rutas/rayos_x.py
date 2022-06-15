@@ -26,4 +26,6 @@ async def computar(parametros: Computo, usuario = Depends(obtener_usuario_actual
         parametros.tension_parada, parametros.tension_incremento, parametros.angulo_arranque, 
         parametros.angulo_parada, parametros.angulo_incremento)
     logica.ejecutar_parametros()
-    # logica.cerrar_programa()
+    logica.exportar_resultados()
+    return "Aquí debería haber algo que envíe el archivo Libro.xlsx"
+    

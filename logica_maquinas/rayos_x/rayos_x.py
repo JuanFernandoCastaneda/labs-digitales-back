@@ -11,7 +11,7 @@ RUTA_RESULTADO_PARAMETROS = "resultado_parametros.au3"
 RUTA_EXPORTAR_RESULTADOS = "exportar_resultados.au3"
 RUTA_SCRIPT1 = "script1.au3"
 
-tension_variable = False
+tension_variable = True
 
 # Función para correr los diferentes scripts y saber si terminaron de manera exitosa.
 def correr_script(script) -> bool:
@@ -24,6 +24,7 @@ def abrir_programa():
 def abrir_interfaz_maquina():
     correr_script(RUTA_ABRIR_RAYOS_X)
 
+# Siempre elegir tensión variable para que el resto funcione.
 def ingresar_parametros(corriente: float, tiempo: int, tension_arranque: int, 
                         tension_parada: Optional[int], tension_incremento: Optional[int], 
                         angulo_arranque: int, angulo_parada: Optional[int], 
@@ -42,7 +43,8 @@ def ingresar_parametros(corriente: float, tiempo: int, tension_arranque: int,
     if angulo_parada != None and angulo_incremento != None:
         archivo[archivo.index('; ANGULO_PARADA\n')] = "Send({})\n".format(angulo_parada)
         archivo[archivo.index('; ANGULO_INCREMENTO\n')] = "Send({})\n".format(angulo_incremento)
-        espera *= ((angulo_parada-angulo_arranque)/angulo_incremento + 1)
+        if angulo_incremento != 0:
+            espera *= ((angulo_parada-angulo_arranque)/angulo_incremento + 1)
     
     tension = ""
     if tension_variable:
@@ -58,10 +60,16 @@ def ingresar_parametros(corriente: float, tiempo: int, tension_arranque: int,
             + 'Send("{}")\n'.format(tension_incremento))
         tension_variable = True
         espera += 10000 # Como 10 segundos dura en volver al puesto, pues
-        espera *= ((tension_parada-tension_arranque)/tension_incremento + 1)
+        if tension_incremento != 0:
+            espera *= ((tension_parada-tension_arranque)/tension_incremento + 1)
     else:
         tension += ('Send("{TAB}")\n'\
             + "Send({})\n".format(tension_arranque))
+        archivo[archivo.index('; CLICS_TENSION_CONSTANTE\n')] = 'Send("{TAB}")\n'\
+            + 'Send("{TAB}")\n'\
+            + 'Send("{TAB}")\n'\
+            + 'Send("{TAB}")\n'\
+            + 'Send("{SPACE}")\n'
     archivo[archivo.index('; TENSION\n')] = tension
 
     archivo[archivo.index('; ESPERA\n')] = "Sleep({})\n".format(str(espera))
@@ -77,9 +85,9 @@ def exportar_resultados():
 
 #abrir_programa()
 #abrir_interfaz_maquina()
-#ingresar_parametros(1, 3, 15, None, None, 5, 15, 10)
+#ingresar_parametros(1, 3, 15, 25, 10, 5, 15, 10)
 #ejecutar_parametros()
-exportar_resultados()
+#exportar_resultados()
 
 # p1.returncode == 0 es que fue exitoso. p1.stderr es para imprimir error.
 # check=True hace que Python también bote excepción.     

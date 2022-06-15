@@ -1,2 +1,0 @@
-Send("{TAB}")
-Send("{SPACE}")

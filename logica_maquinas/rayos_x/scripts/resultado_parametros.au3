@@ -15,8 +15,14 @@ Send("{TAB}")
 ; Tensi�n. Se puede elegir constante o variable, lo cual var�a con un {UP} o nada. Si se pone un {UP} de variable, hay que ingresar 3 par�metros que son:
 ; tensi�n m�nima, tensi�n m�xima e incremento de tensi�n. Toca verificar que el incremento sea congruente con el resto.
 
+Send("{UP}")
+Send("{UP}")
 Send("{TAB}")
-Send(15)
+Send("15")
+Send("{TAB}")
+Send("25")
+Send("{TAB}")
+Send("10")
 
 ; Opci�n 1 tensi�n (constante):
 ; Send("{TAB}")
@@ -65,18 +71,18 @@ Send("{UP}")
 Send("{TAB}")
 
 ; Opci�n de continuar, terminamos :D. Supongo yo que es con enter que funciona.
-Send("{SPACE}")
+Send("{ENTER}")
 
 ; Iniciar medida.
 WinWaitActive("Aparato de rayos X - Registro", "Iniciar medida")
 
 Sleep(7000)
 Send("{TAB}")
-Send("{SPACE}")
+Send("{ENTER}")
 
 ; Tiempo que se debe esperar para que se ejecute la operación. Básicamente es el tiempo que dura en cada ángulo.
 ; Multiplicado por la cantidad de veces que va a cambiar, sumado a por ahí 20 segundos de configuración.
 Sleep(20000)
-Sleep(9000.0)
+Sleep(38000.0)
 
-;Run("notepad.exe")
+; CLICS_TENSION_CONSTANTE
