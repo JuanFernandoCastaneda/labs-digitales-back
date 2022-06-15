@@ -13,7 +13,7 @@ WinClose("Asistente para la activación de Microsoft Office")
 
 Sleep(2000)
 Send("^v")
-
+Sleep(2000)
 Send("!a")
 Sleep(2500)
 Send("v")

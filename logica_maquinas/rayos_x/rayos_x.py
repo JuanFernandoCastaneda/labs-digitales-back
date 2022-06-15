@@ -85,7 +85,7 @@ def exportar_resultados():
 
 #abrir_programa()
 #abrir_interfaz_maquina()
-#ingresar_parametros(1, 3, 15, 25, 10, 5, 15, 10)
+#ingresar_parametros(1, 3, 15, 35, 10, 5, 15, 10)
 #ejecutar_parametros()
 #exportar_resultados()
 

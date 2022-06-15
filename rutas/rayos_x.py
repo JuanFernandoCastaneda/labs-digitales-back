@@ -27,5 +27,11 @@ async def computar(parametros: Computo, usuario = Depends(obtener_usuario_actual
         parametros.angulo_parada, parametros.angulo_incremento)
     logica.ejecutar_parametros()
     logica.exportar_resultados()
-    return "Aquí debería haber algo que envíe el archivo Libro.xlsx"
+    return "gg ez pz"
     
+# Esto no debería ejecutarse sino hasta el final
+@enrutador.get("/rayos_x/")
+async def enviar_resultado():
+    with open("Libro.xlxs", "rb") as f:
+        archivo = f.readlines()
+    return archivo
