@@ -35,6 +35,13 @@ Send("{TAB}")
 ; Modo rotaci�n. Siempre es el mismo as� que solo se da tab. Se mueve con {UP} y {DOWN}.
 Send("{TAB}")
 
+; Hecho para que ángulo de arranque y de parada no se puteen.
+Send("{TAB}")
+Send("{TAB}")
+Send("0.1")
+Send("+{TAB}")
+Send("+{TAB}")
+
 ; �ngulo de arranque. En grados.
 ; ANGULO_ARRANQUE
 Send("{TAB}")
