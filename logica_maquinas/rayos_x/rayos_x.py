@@ -11,7 +11,7 @@ RUTA_RESULTADO_PARAMETROS = "resultado_parametros.au3"
 RUTA_EXPORTAR_RESULTADOS = "exportar_resultados.au3"
 RUTA_SCRIPT1 = "script1.au3"
 
-tension_variable = True
+tension_variable = False
 
 # Función para correr los diferentes scripts y saber si terminaron de manera exitosa.
 def correr_script(script) -> bool:
@@ -54,10 +54,12 @@ def ingresar_parametros(corriente: float, tiempo: int, tension_arranque: int,
         tension += ('Send("{UP}")\n'\
             + 'Send("{TAB}")\n'\
             + 'Send("{}")\n'.format(tension_arranque)\
+            + 'Send("{TAB}{TAB}")\n'\
+            + 'Send("{}")\n'.format(0.5)\
+            + 'Send("+{TAB}")\n'\
+            + 'Send("{}")\n'.format(tension_parada))\
             + 'Send("{TAB}")\n'\
-            + 'Send("{}")\n'.format(tension_parada)\
-            + 'Send("{TAB}")\n'\
-            + 'Send("{}")\n'.format(tension_incremento))
+            + 'Send("{}")\n'.format(tension_incremento)
         tension_variable = True
         espera += 10000 # Como 10 segundos dura en volver al puesto, pues
         if tension_incremento != 0:

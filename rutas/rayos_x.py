@@ -3,6 +3,7 @@ import logica_maquinas.rayos_x.rayos_x as logica
 from pydantic import BaseModel
 from datetime import datetime
 from rutas.autenticacion import obtener_usuario_actual
+import json
 
 class Computo(BaseModel):
     corriente: float
@@ -26,15 +27,17 @@ async def computar(websocket: WebSocket):
         await websocket.send("401")
         await websocket.close()
     else:
-        parametros = await websocket.receive_json()
-        # logica.abrir_programa()
-        # logica.abrir_interfaz_maquina()
-        # logica.ingresar_parametros(parametros.corriente, parametros.tiempo, parametros.tension_arranque, 
-        #     parametros.tension_parada, parametros.tension_incremento, parametros.angulo_arranque, 
-        #     parametros.angulo_parada, parametros.angulo_incremento)
-        # logica.ejecutar_parametros()
-        # logica.exportar_resultados()
-        await websocket.send_bytes(bin(173))
+        parametros = json.loads(await websocket.receive_json())
+        logica.abrir_programa()
+        logica.abrir_interfaz_maquina()
+        logica.ingresar_parametros(parametros.get("corriente"), parametros.get("tiempo"), parametros.get("tension_arranque"), 
+            parametros.get("tension_parada", None), parametros.get("tension_incremento", None), 
+            parametros.get("angulo_arranque"), parametros.get("angulo_parada", None), parametros.get("angulo_incremento", None))
+        logica.ejecutar_parametros()
+        logica.exportar_resultados()
+        with open("Libro.xlsx", "rb") as f:
+            archivo = f.readlines()
+        await websocket.send_bytes(archivo)
         await websocket.close()
     
 # Esto no debería ejecutarse sino hasta el final

@@ -4,4 +4,5 @@ Send("!ea")
 
 ; Esperamos a que la ventana donde se ingresan los par�metros aparezca. 
 WinWaitActive("Aparato de rayo")
-; WinWaitActive("Aparato de rayo  <Num. serie: 91207702-407-18495>")
+
+Sleep(2500)
