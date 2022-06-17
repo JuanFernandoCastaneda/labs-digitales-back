@@ -6,6 +6,8 @@ Send("{ENTER}")
 
 Local $oExcel = _Excel_Open()
 Local $oWorkbook = _Excel_BookNew($oExcel, 1)
+Sleep(1000)
+Send("!{TAB}")
 
 ; Por la razón que quieras esto recibe por parámetro segundos y no milisegundos.
 WinWaitActive("Asistente para la activación de Microsoft Office", "", 5)

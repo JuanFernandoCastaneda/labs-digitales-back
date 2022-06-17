@@ -23,7 +23,7 @@ Send("0.5")
 Send("+{TAB}")
 Send("35")
 Send("{TAB}")
-Send("5")
+Send("1")
 
 ; Opci�n 1 tensi�n (constante):
 ; Send("{TAB}")
@@ -43,16 +43,23 @@ Send("{TAB}")
 ; Modo rotaci�n. Siempre es el mismo as� que solo se da tab. Se mueve con {UP} y {DOWN}.
 Send("{TAB}")
 
+; Hecho para que ángulo de arranque y de parada no se puteen.
+Send("{TAB}")
+Send("{TAB}")
+Send("0.1")
+Send("+{TAB}")
+Send("+{TAB}")
+
 ; �ngulo de arranque. En grados.
-Send(19)
+Send(5)
 Send("{TAB}")
 
 ; �ngulo de parada. En grados.
-Send(22)
+Send(55)
 Send("{TAB}")
 
 ; Incremento. En grados.
-Send(1)
+Send(10)
 Send("{TAB}")
 
 ; Cristal siempre es LIF. Es un men� desplegable que hay que ver c�mo se modifica.
@@ -84,6 +91,6 @@ Send("{ENTER}")
 ; Tiempo que se debe esperar para que se ejecute la operación. Básicamente es el tiempo que dura en cada ángulo.
 ; Multiplicado por la cantidad de veces que va a cambiar, sumado a por ahí 20 segundos de configuración.
 Sleep(20000)
-Sleep(48000.0)
+Sleep(186000.0)
 
 ; CLICS_TENSION_CONSTANTE
