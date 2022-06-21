@@ -50,7 +50,8 @@ app.include_router(maquinas.enrutador)
 app.include_router(usuarios.enrutador)
 app.include_router(rayos_x.enrutador)
 
-loop = asyncio.new_event_loop()
+loop = asyncio.ProactorEventLoop()
+asyncio.set_event_loop(loop)
 
 configuracion = Config(app=app, loop=loop)
 server = Server(configuracion)
