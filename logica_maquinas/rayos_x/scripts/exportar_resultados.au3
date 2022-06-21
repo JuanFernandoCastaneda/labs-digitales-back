@@ -4,7 +4,7 @@ Send("!mx")
 WinWaitActive("Exportar valores")
 Send("{ENTER}")
 
-Local $oExcel = _Excel_Open()
+Local $oExcel = _Excel_Open(Default, Default, Default, Default, True)
 Local $oWorkbook = _Excel_BookNew($oExcel, 1)
 Sleep(1000)
 Send("!{TAB}")

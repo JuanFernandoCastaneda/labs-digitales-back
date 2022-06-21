@@ -9,19 +9,20 @@ Send(1)
 Send("{TAB}")
 
 ; Tiempo de integraci�n. Se ingresa un integer como par�metro.
-Send(2)
+Send(3)
 Send("{TAB}")
 
 ; Tensi�n. Se puede elegir constante o variable, lo cual var�a con un {UP} o nada. Si se pone un {UP} de variable, hay que ingresar 3 par�metros que son:
 ; tensi�n m�nima, tensi�n m�xima e incremento de tensi�n. Toca verificar que el incremento sea congruente con el resto.
 
 Send("{UP}")
+Send("{UP}")
 Send("{TAB}")
 Send("30")
 Send("{TAB}{TAB}")
 Send("0.5")
 Send("+{TAB}")
-Send("35")
+Send("25")
 Send("{TAB}")
 Send("1")
 
@@ -51,15 +52,15 @@ Send("+{TAB}")
 Send("+{TAB}")
 
 ; �ngulo de arranque. En grados.
-Send(5)
+Send(15)
 Send("{TAB}")
 
 ; �ngulo de parada. En grados.
-Send(55)
+Send(20)
 Send("{TAB}")
 
 ; Incremento. En grados.
-Send(10)
+Send(5)
 Send("{TAB}")
 
 ; Cristal siempre es LIF. Es un men� desplegable que hay que ver c�mo se modifica.
@@ -91,6 +92,6 @@ Send("{ENTER}")
 ; Tiempo que se debe esperar para que se ejecute la operación. Básicamente es el tiempo que dura en cada ángulo.
 ; Multiplicado por la cantidad de veces que va a cambiar, sumado a por ahí 20 segundos de configuración.
 Sleep(20000)
-Sleep(186000.0)
+Sleep(-76000.0)
 
 ; CLICS_TENSION_CONSTANTE
