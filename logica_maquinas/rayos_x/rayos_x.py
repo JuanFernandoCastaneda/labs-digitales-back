@@ -1,3 +1,4 @@
+import asyncio
 import os
 from pydoc import doc
 import subprocess
@@ -14,18 +15,18 @@ RUTA_SCRIPT1 = "script1.au3"
 tension_variable = False
 
 # Función para correr los diferentes scripts y saber si terminaron de manera exitosa.
-def correr_script(script) -> bool:
-    p1 = subprocess.run(["Autoit3", RUTA_SCRIPTS + script])
+async def correr_script(script) -> bool:
+    p1 = await asyncio.create_subprocess_shell("Autoit3 " + RUTA_SCRIPTS + script)
     return p1.returncode == 0
 
-def abrir_programa():
-    correr_script(RUTA_ABRIR_PROGRAMA)
+async def abrir_programa():
+    await correr_script(RUTA_ABRIR_PROGRAMA)
 
-def abrir_interfaz_maquina():
-    correr_script(RUTA_ABRIR_RAYOS_X)
+async def abrir_interfaz_maquina():
+    await correr_script(RUTA_ABRIR_RAYOS_X)
 
 # Siempre elegir tensión variable para que el resto funcione.
-def ingresar_parametros(corriente: float, tiempo: int, tension_arranque: int, 
+async def ingresar_parametros(corriente: float, tiempo: int, tension_arranque: int, 
                         tension_parada: Optional[int], tension_incremento: Optional[int], 
                         angulo_arranque: int, angulo_parada: Optional[int], 
                         angulo_incremento: Optional[float]):
@@ -79,11 +80,11 @@ def ingresar_parametros(corriente: float, tiempo: int, tension_arranque: int,
     with open(RUTA_SCRIPTS + RUTA_RESULTADO_PARAMETROS, "w") as f:
         f.write("".join(archivo))
 
-def ejecutar_parametros():
-    correr_script(RUTA_RESULTADO_PARAMETROS)
+async def ejecutar_parametros():
+    await correr_script(RUTA_RESULTADO_PARAMETROS)
 
-def exportar_resultados():
-    correr_script(RUTA_EXPORTAR_RESULTADOS)
+async def exportar_resultados():
+    await correr_script(RUTA_EXPORTAR_RESULTADOS)
 
 #abrir_programa()
 #abrir_interfaz_maquina()

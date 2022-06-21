@@ -28,21 +28,14 @@ async def computar(websocket: WebSocket):
         await websocket.close()
     else:
         parametros = json.loads(await websocket.receive_json())
-        logica.abrir_programa()
-        logica.abrir_interfaz_maquina()
-        logica.ingresar_parametros(parametros.get("corriente"), parametros.get("tiempo"), parametros.get("tension_arranque"), 
+        await logica.abrir_programa()
+        await logica.abrir_interfaz_maquina()
+        await logica.ingresar_parametros(parametros.get("corriente"), parametros.get("tiempo"), parametros.get("tension_arranque"), 
             parametros.get("tension_parada", None), parametros.get("tension_incremento", None), 
             parametros.get("angulo_arranque"), parametros.get("angulo_parada", None), parametros.get("angulo_incremento", None))
-        logica.ejecutar_parametros()
-        logica.exportar_resultados()
+        await logica.ejecutar_parametros()
+        await logica.exportar_resultados()
         with open("Libro.xlsx", "rb") as f:
             archivo = f.readlines()
         await websocket.send_bytes(archivo)
         await websocket.close()
-    
-# Esto no debería ejecutarse sino hasta el final
-@enrutador.get("/rayos_x/")
-async def enviar_resultado():
-    with open("Libro.xlxs", "rb") as f:
-        archivo = f.readlines()
-    return archivo

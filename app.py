@@ -1,5 +1,7 @@
+import asyncio
 from fastapi import FastAPI
-from rutas import autenticacion, departamentos, maquinas, usuarios, rayos_x
+from uvicorn import Config, Server
+from rutas import autenticacion, maquinas, usuarios, rayos_x
 from modelos.db import db, ModeloBase, motor
 from modelos import reserva, usuario, maquina, departamento
 from fastapi.middleware.cors import CORSMiddleware
@@ -47,3 +49,9 @@ app.include_router(autenticacion.enrutador)
 app.include_router(maquinas.enrutador)
 app.include_router(usuarios.enrutador)
 app.include_router(rayos_x.enrutador)
+
+loop = asyncio.new_event_loop()
+
+configuracion = Config(app=app, loop=loop)
+server = Server(configuracion)
+loop.run_until_complete(server.serve())
