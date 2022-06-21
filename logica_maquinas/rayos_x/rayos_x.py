@@ -17,7 +17,7 @@ tension_variable = False
 # Función para correr los diferentes scripts y saber si terminaron de manera exitosa.
 async def correr_script(script) -> bool:
     p1 = await asyncio.create_subprocess_shell("Autoit3 " + RUTA_SCRIPTS + script)
-    return p1.returncode == 0
+    return await p1.wait() == 0
 
 async def abrir_programa():
     await correr_script(RUTA_ABRIR_PROGRAMA)
